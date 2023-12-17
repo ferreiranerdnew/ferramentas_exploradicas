@@ -15,6 +15,3 @@ for video in playlist.videos:
 #  RF volatilidade implicita do ativo
 #https://www.youtube.com/watch?v=Jpy3iCsijIU&list=PLIsyeDfZPS1QWmcYiEQJUwzBqeXSL6lWu
     
-# RF ESTUDO SUPER MARIO EM FLUTTER REPRODUZIR BAIXAR VIDEO E GIT    
- #   Recreating Super Mario Bros. with Flutter & Flame | Step-by-Step Tutorial | Part Two 🍄 🎮 🔥
-#https://www.youtube.com/watch?v=wbV2KX6iIO8

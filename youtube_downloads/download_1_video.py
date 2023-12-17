@@ -9,11 +9,15 @@
 
 from pytube import YouTube
 
-VIDEO_URL = 'https://www.youtube.com/watch?v=AZTV_uT2e68'
+VIDEO_URL = 'https://www.youtube.com/watch?v=wbV2KX6iIO8'
 yt = YouTube(VIDEO_URL)
 print(yt)
-file ="F:\\videosyoutube\\"  #pasta que vai receber o video 
+file ="K:\\000015.dowCanaisYoutube\\Trey Codes\\videos"  #pasta que vai receber o video 
 
 #video = yt.streams.filter(file_extension='mp4',only_video=True)
 video = yt.streams.first()
 video.download(file)
+
+# RF ESTUDO SUPER MARIO EM FLUTTER REPRODUZIR BAIXAR VIDEO E GIT    feito download em 17/12/2023
+ #   Recreating Super Mario Bros. with Flutter & Flame | Step-by-Step Tutorial | Part Two 🍄 🎮 🔥
+# https://www.youtube.com/watch?v=wbV2KX6iIO8
