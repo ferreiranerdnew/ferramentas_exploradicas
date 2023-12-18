@@ -1,0 +1,14 @@
+select * from EMPVINICIAL
+where EMPRESAS IN('RAIZ4F','PMAM3F','BMGB4F')
+
+delete from EMPVINICIAL
+where EMPRESAS IN('RAIZ4F','PMAM3F','BMGB4F')
+
+SELECT * FROM OPERACOES
+where PAPEL  IN('RAIZ4F','PMAM3F','BMGB4F')
+
+delete from OPERACOES
+where PAPEL  = 'BMGB4F'
+
+select * from EMPVINICIAL
+order by VALOR_INI 

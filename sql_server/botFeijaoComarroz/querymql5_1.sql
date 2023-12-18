@@ -1,0 +1,52 @@
+SELECT MIN(VALOR_MEDIO) AS VALOR_MEDIO, PAPEL,STATUS_COMPRA FROM OPERACOES
+                                WHERE PAPEL = 'IRBR3F'
+                                AND STATUS_COMPRA ='N'
+                                AND DEAL_VENDA IS NULL
+                                GROUP BY PAPEL,STATUS_COMPRA
+                                
+                                
+SELECT * FROM OPERACOES
+where STATUS_COMPRA <>'F'
+and PAPEL ='BRAP4F'
+/*
+UPDATE OPERACOES
+  SET STATUS_COMPRA ='N'
+  where STATUS_COMPRA <>'F'
+and PAPEL ='IRBR3F'
+
+UPDATE OPERACOES
+  SET STATUS_COMPRA ='S'
+  where STATUS_COMPRA <>'F'
+and PAPEL ='IRBR3F'
+AND VALOR_MEDIO =49.12
+*/
+select * from EMPVINICIAL
+where EMPRESAS = 'ROMI3F'
+
+
+UPDATE EMPVINICIAL
+  SET VALOR_INI =17.07
+  where EMPRESAS = 'ROMI3F'
+  
+  
+--3434433434#$#$#$##################################  
+--343 CORRIGIR VALOR MINIMO NÃO LOCALIZADO PELO  AND VALOR_MEDIO
+--3434433434#$#$#$##################################  
+select SUBSTRING(DATA_INICIO, 7, 2)+'/'+SUBSTRING(DATA_INICIO, 5, 2)+'/'+SUBSTRING(DATA_INICIO, 1, 4) DATA_INICIO,
+PAPEL, QUANTIDADE, VALOR_MEDIO,STATUS_COMPRA from OPERACOES
+where STATUS_COMPRA <>'F'
+and PAPEL ='IRBR3F'
+AND VALOR_MEDIO = 43.31
+order by PAPEL, VALOR_MEDIO desc
+
+
+  select * from OPERACOES
+where STATUS_COMPRA <>'F'
+and PAPEL ='IRBR3F'
+and DEAL ='2691657654'
+
+update OPERACOES
+  SET VALOR_MEDIO =43.31, STATUS_COMPRA ='S'
+  where STATUS_COMPRA <>'F'
+and PAPEL ='IRBR3F'
+and DEAL ='2691657654'
