@@ -11,16 +11,12 @@ def opcoes_estrategia():
     cnxn6 = ConectSQL.conexao_banco_sqlServer()
     #curs = cnxn5.cursor()
     # Montagem script sql para execução no banco de dados
-    comando = '''SELECT 
-                        '{
-                            "op_type": "' + op_type + '",
-                            "strike": "' + CAST(strike AS VARCHAR) + '",
-                            "tr_type": "' + tr_type + '",
-                            "op_pr": "' + CAST(op_pr AS VARCHAR) + '"
-                        }' AS ops_1,
-                        *
-                    FROM OPCOES_TRAVAS
-                    '''
+    comando = f"""SELECT * FROM OPCOES_TRAVAS
+                    where status = 'A'
+                    --and papel ='ABEV3'
+                    --group by pedido, papel
+                    order by pedido
+                    """
 
     # executando script na conexão do banco de dados que foi aberta
     df_opcoes = pd.read_sql(comando, cnxn6)
@@ -32,35 +28,7 @@ def opcoes_estrategia():
 #######################################################################################
 ########################### Função matriz do carregamento da sinformações##############
 #######################################################################################
-# Inicializando os dicionários
-# op1 = {}
-# op2 = {}
-# op3 = {}
-# op4 = {}
-# op1 = {
-#     'op_type': 0,
-#     'strike': 0,
-#     'tr_type': 0,
-#     'op_pr': 0
-# }
-# op2 = {
-#     'op_type': 0,
-#     'strike': 0,
-#     'tr_type': 0,
-#     'op_pr': 0
-# }
-# op3 = {
-#     'op_type': 0,
-#     'strike': 0,
-#     'tr_type': 0,
-#     'op_pr': 0
-# }
-# op4= {
-#     'op_type': 0,
-#     'strike': 0,
-#     'tr_type': 0,
-#     'op_pr': 0
-# }
+
 
 df_opcoes = ""
 df_opcoes = opcoes_estrategia()
@@ -109,29 +77,25 @@ for index, row in df_agrupado.iterrows():
             }
     
 
-    # title_1 = f'''{empresas} IRON 18/12/2023'''
-    # if ondens_position == 2:
-    #     op_list=[op1, op2]
-    # else:
-    #     op_list=[op1, op2, op3, op4]
-    # op.multi_plotter(spot=preco_mont,spot_range=10, op_list=op_list, title_1=title_1,spotInicial = preco_mont)
-            
+    title_1 = f'''{empresas} IRON 18/12/2023'''
+    if ondens_position == 2:
+        op_list=[op1, op2]
+    else:
+        op_list=[op1, op2, op3, op4]
+    op.multi_plotter(spot=preco_mont,spot_range=10, op_list=op_list, title_1=title_1,spotInicial = preco_mont)
     # Limpar os dicionários
-    # op1.clear()
-    # op2.clear()
-    # op3.clear()
-    # op4.clear()
+    if 'op1' in locals():
+        # Destruir op1
+        del op1
+    if 'op2' in locals():
+        # Destruir op1
+        del op2
+    if 'op3' in locals():
+        # Destruir op1
+        del op3
+    if 'op4' in locals():
+        # Destruir op1
+        del op4
 
-
-
-# op1={'op_type': 'c', 'strike': 36.77, 'tr_type': 's', 'op_pr': 0.76}
-# op2={'op_type': 'c', 'strike': 37.27, 'tr_type': 'b', 'op_pr': 0.60}
-# op3={'op_type': 'p', 'strike': 34.52, 'tr_type': 's', 'op_pr': 0.51}
-# op4={'op_type': 'p', 'strike': 34.02, 'tr_type': 'b', 'op_pr': 0.41}
-
-# title_1 = 'PETR4 IRON 18/12/2023'
-
-# op_list=[op1, op2, op3, op4]
-# op.multi_plotter(spot=35.84,spot_range=10, op_list=op_list, title_1=title_1)
 
 
