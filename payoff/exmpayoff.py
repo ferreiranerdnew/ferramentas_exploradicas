@@ -25,33 +25,43 @@ def d(S, K, r, sigma, t):
     d2 = d1 - sigma * np.sqrt(t)
     return d1, d2
 
-#  We will assume the 50 strike call
+###################################################################
+#    $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# BUG                     Long Call Option
+###################################################################
 
-#  These are needed for the Black-Schole model, but these values are unimportant as we are setting time to zero
-r = 0.01
-sigma = 0.2
+# #  We will assume the 50 strike call
 
-#  Days to expiration.  We are interested in the call's value at expiration.
-t = 0
+# #  These are needed for the Black-Schole model, but these values are unimportant as we are setting time to zero
+# r = 0.01
+# sigma = 0.2
 
-#  Strike Price
-K = 50
+# #  Days to expiration.  We are interested in the call's value at expiration.
+# t = 0
 
-#  We are assuming we paid a debit of this much for the call
-C0 = 1.45
+# #  Strike Price
+# K = 50
 
-#  Generate a range of stock prices for plotting.  There will be issues with this is S is exactly equal to K.
-S = np.linspace(45, 55, 100)
+# #  We are assuming we paid a debit of this much for the call
+# C0 = 1.45
 
-#  Calculate the call price as a function of S
-d1, d2 = d(S, K, r, sigma, t)
-C = call_price(d1, d2, S, K, r, t)
+# #  Generate a range of stock prices for plotting.  There will be issues with this is S is exactly equal to K.
+# S = np.linspace(45, 55, 100)
 
-#  Plot the payout graph
-plt.plot(S, C - C0, 'k')
-plt.xlabel('Stock Price ($)')
-plt.ylabel('Profit/Loss ($)')
-plt.grid(True)
+# #  Calculate the call price as a function of S
+# d1, d2 = d(S, K, r, sigma, t)
+# C = call_price(d1, d2, S, K, r, t)
+
+# #  Plot the payout graph
+# plt.plot(S, C - C0, 'k')
+# plt.xlabel('Stock Price ($)')
+# plt.ylabel('Profit/Loss ($)')
+# plt.grid(True)
+
+###################################################################
+#    $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# BUG                     Long Call Spread
+###################################################################
 
 #  Parameters needed for the model
 r = 0.01
@@ -63,14 +73,15 @@ t = 0
 #  We are assuming we are Long the 50/52 call spread.
 #  In other words, we are long the 50 and short the 52 call.
 #  These are the strikes
-K1 = 50
-K2 = 52
+K1 = 14.60
+K2 = 14.85
 
 #  We are assuming this is the cost of the spread when we placed the position.
-C0 = 1.10
+# Estamos assumindo que este é o custo do spread quando colocamos a posição.
+C0 = 0.12
 
 #  Generate a range of stock prices
-S = np.linspace(45, 55, 100)
+S = np.linspace(13.60, 16.10, 100)
 
 #  Calculate the price of the 50-strike option
 d1, d2 = d(S, K1, r, sigma, t)
