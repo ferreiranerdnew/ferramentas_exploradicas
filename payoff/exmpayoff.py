@@ -73,8 +73,8 @@ t = 0
 #  We are assuming we are Long the 50/52 call spread.
 #  In other words, we are long the 50 and short the 52 call.
 #  These are the strikes
-K1 = 14.60
-K2 = 14.85
+K1 = 14.60  # COMPRA
+K2 = 14.85  # VENDA
 
 #  We are assuming this is the cost of the spread when we placed the position.
 # Estamos assumindo que este é o custo do spread quando colocamos a posição.
