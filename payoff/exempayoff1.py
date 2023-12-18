@@ -13,6 +13,7 @@ def opcoes_estrategia():
     # Montagem script sql para execução no banco de dados
     comando = f"""SELECT * FROM OPCOES_TRAVAS
                     where status = 'A'
+                    and papel ='ABEV3'
                     --group by pedido, papel
                     order by pedido
                     """
@@ -30,17 +31,31 @@ def opcoes_estrategia():
 
 df_opcoes = ""
 df_opcoes = opcoes_estrategia()
-df_agrupado = df_opcoes.groupby(['papel', 'pedido']).size().reset_index(name='count')
+df_agrupado = df_opcoes.groupby(['papel', 'pedido','price_montagem']).size().reset_index(name='count')
 
 for index, row in df_agrupado.iterrows():
     empresas = row['papel']
+    ondens_position= row['count']
+    preco_mont= row['price_montagem']
     dados_empresa = df_opcoes[df_opcoes['papel'] == empresas]
-    print(dados_empresa)
+
+    teste_1=1    
+    
+    for index, row_1 in dados_empresa.iterrows():
+
+        if teste_1 == 1:
+            op1={'op_type': row_1 ['op_type'], 'strike': row_1 ['strike'], 'tr_type': row_1 ['tr_type'], 'op_pr': row_1 ['op_pr']}            
+            teste_1 += 1
+
+        elif teste_1 == 2:
+            op2={'op_type': row_1 ['op_type'], 'strike': row_1 ['strike'], 'tr_type': row_1 ['tr_type'], 'op_pr': row_1 ['op_pr']}
+    
+            if teste_1 == 2:
+                title_1 = f'''{empresas} IRON 18/12/2023'''
+                op_list=[op1, op2]
+                op.multi_plotter(spot=preco_mont,spot_range=10, op_list=op_list, title_1=title_1)
 
 
-
-
-    print(empresas)
 
 # op1={'op_type': 'c', 'strike': 36.77, 'tr_type': 's', 'op_pr': 0.76}
 # op2={'op_type': 'c', 'strike': 37.27, 'tr_type': 'b', 'op_pr': 0.60}
