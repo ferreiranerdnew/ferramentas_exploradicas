@@ -11,12 +11,16 @@ def opcoes_estrategia():
     cnxn6 = ConectSQL.conexao_banco_sqlServer()
     #curs = cnxn5.cursor()
     # Montagem script sql para execução no banco de dados
-    comando = f"""SELECT * FROM OPCOES_TRAVAS
-                    where status = 'A'
-                    and papel ='ABEV3'
-                    --group by pedido, papel
-                    order by pedido
-                    """
+    comando = '''SELECT 
+                        '{
+                            "op_type": "' + op_type + '",
+                            "strike": "' + CAST(strike AS VARCHAR) + '",
+                            "tr_type": "' + tr_type + '",
+                            "op_pr": "' + CAST(op_pr AS VARCHAR) + '"
+                        }' AS ops_1,
+                        *
+                    FROM OPCOES_TRAVAS
+                    '''
 
     # executando script na conexão do banco de dados que foi aberta
     df_opcoes = pd.read_sql(comando, cnxn6)
@@ -105,15 +109,16 @@ for index, row in df_agrupado.iterrows():
             }
     
 
-    title_1 = f'''{empresas} IRON 18/12/2023'''
-    if ondens_position == 2:
-        op_list=[op1, op2]
-    else:
-        op_list=[op1, op2, op3, op4]
-    op.multi_plotter(spot=preco_mont,spot_range=10, op_list=op_list, title_1=title_1,spotInicial = preco_mont)
+    # title_1 = f'''{empresas} IRON 18/12/2023'''
+    # if ondens_position == 2:
+    #     op_list=[op1, op2]
+    # else:
+    #     op_list=[op1, op2, op3, op4]
+    # op.multi_plotter(spot=preco_mont,spot_range=10, op_list=op_list, title_1=title_1,spotInicial = preco_mont)
+            
     # Limpar os dicionários
-    op1.clear()
-    op2.clear()
+    # op1.clear()
+    # op2.clear()
     # op3.clear()
     # op4.clear()
 
