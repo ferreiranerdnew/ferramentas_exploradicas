@@ -1,6 +1,7 @@
 # pip install opstrat
 
 import opstrat as op
+import funcaoConexaoBancoSQl as ConectSQL
 
 # op.single_plotter()
 
