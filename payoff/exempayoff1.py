@@ -13,7 +13,7 @@ def opcoes_estrategia():
     # Montagem script sql para execução no banco de dados
     comando = f"""SELECT * FROM OPCOES_TRAVAS
                     where status = 'A'
-                    and papel ='PETR4'
+                    and papel ='ABEV3'
                     --group by pedido, papel
                     order by pedido
                     """
@@ -28,6 +28,35 @@ def opcoes_estrategia():
 #######################################################################################
 ########################### Função matriz do carregamento da sinformações##############
 #######################################################################################
+# Inicializando os dicionários
+# op1 = {}
+# op2 = {}
+# op3 = {}
+# op4 = {}
+# op1 = {
+#     'op_type': 0,
+#     'strike': 0,
+#     'tr_type': 0,
+#     'op_pr': 0
+# }
+# op2 = {
+#     'op_type': 0,
+#     'strike': 0,
+#     'tr_type': 0,
+#     'op_pr': 0
+# }
+# op3 = {
+#     'op_type': 0,
+#     'strike': 0,
+#     'tr_type': 0,
+#     'op_pr': 0
+# }
+# op4= {
+#     'op_type': 0,
+#     'strike': 0,
+#     'tr_type': 0,
+#     'op_pr': 0
+# }
 
 df_opcoes = ""
 df_opcoes = opcoes_estrategia()
@@ -81,11 +110,12 @@ for index, row in df_agrupado.iterrows():
         op_list=[op1, op2]
     else:
         op_list=[op1, op2, op3, op4]
-    op.multi_plotter(spot=preco_mont,spot_range=10, op_list=op_list, title_1=title_1)
-    op1 ={}
-    op2 ={}
-    op3 ={}
-    op4 ={}
+    op.multi_plotter(spot=preco_mont,spot_range=10, op_list=op_list, title_1=title_1,spotInicial = preco_mont)
+    # Limpar os dicionários
+    op1.clear()
+    op2.clear()
+    # op3.clear()
+    # op4.clear()
 
 
 
