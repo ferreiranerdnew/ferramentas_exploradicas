@@ -25,3 +25,10 @@ INSERT INTO OPCOES_TRAVAS (pedido,papel,op_type,strike,tr_type,op_pr,status,data
 
 INSERT INTO OPCOES_TRAVAS (pedido,papel,op_type,strike,tr_type,op_pr,status,data_necimento,data_compra) VALUES (
                             1,'PETR4','p',34.02,'b',0.41,'A','20240119','20231218')
+                            
+                            
+INSERT INTO OPCOES_TRAVAS (pedido,papel,op_type,strike,tr_type,op_pr,status,data_necimento,data_compra) VALUES (
+                              2,'ABEV3','c',14.85,'s',0.19,'A','20240119','20231218')
+
+INSERT INTO OPCOES_TRAVAS (pedido,papel,op_type,strike,tr_type,op_pr,status,data_necimento,data_compra) VALUES (
+                            2,'ABEV3','c',14.60,'b',0.31,'A','20240119','20231218')
