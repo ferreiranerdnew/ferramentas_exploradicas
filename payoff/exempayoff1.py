@@ -14,7 +14,7 @@ def opcoes_estrategia():
     # Montagem script sql para execução no banco de dados
     comando = f"""SELECT * FROM OPCOES_TRAVAS
                     where status = 'A'
-                    and papel in('ABEV3','PETR4')
+                    --and papel in('ABEV3','PETR4','BMGB4')
                     --group by pedido, papel
                     order by pedido
                     """
@@ -56,108 +56,91 @@ for index, row in df_agrupado.iterrows():
     # Obtenha o valor da última cotação (último preço)
     ultima_cotacao = historico['Close'].iloc[-1]
 
-
-    if ondens_position==2:
-
-        if 'op1' in locals():
-            # Destruir op1
-            del op1
-        if 'op2' in locals():
-            # Destruir op1
-            del op2
-        if 'op3' in locals():
-            # Destruir op1
-            del op3
-        if 'op4' in locals():
-            # Destruir op1
-            del op4
-
-
-        for index, row_1 in dados_PEDIDO.iterrows():    
-            if primeira_passagem:
-                op1 = {
-                    'op_type': row_1['op_type'],
-                    'strike': row_1['strike'],
-                    'tr_type': row_1['tr_type'],
-                    'op_pr': row_1['op_pr']
-                }
-                primeira_passagem = False
-            else:
-                op2 = {
-                    'op_type': row_1['op_type'],
-                    'strike': row_1['strike'],
-                    'tr_type': row_1['tr_type'],
-                    'op_pr': row_1['op_pr']
-                }
-
-    elif ondens_position ==4:
-        if 'op1' in locals():
-            # Destruir op1
-            del op1
-        if 'op2' in locals():
-            # Destruir op1
-            del op2
-        if 'op3' in locals():
-            # Destruir op1
-            del op3
-        if 'op4' in locals():
-            # Destruir op1
-            del op4
-        for index, row_1 in dados_PEDIDO.iterrows():    
-            if primeira_passagem:
-                op1 = {
-                    'op_type': row_1['op_type'],
-                    'strike': row_1['strike'],
-                    'tr_type': row_1['tr_type'],
-                    'op_pr': row_1['op_pr']
-                }
-                primeira_passagem = False
-            elif 'op2' not in locals():
-                op2 = {
-                    'op_type': row_1['op_type'],
-                    'strike': row_1['strike'],
-                    'tr_type': row_1['tr_type'],
-                    'op_pr': row_1['op_pr']
-                }
-            elif 'op3' not in locals():
-                op3 = {
-                    'op_type': row_1['op_type'],
-                    'strike': row_1['strike'],
-                    'tr_type': row_1['tr_type'],
-                    'op_pr': row_1['op_pr']
-                }
-            else:
-                op4 = {
-                    'op_type': row_1['op_type'],
-                    'strike': row_1['strike'],
-                    'tr_type': row_1['tr_type'],
-                    'op_pr': row_1['op_pr']
-                }
-            
-
     title_1 = f'''{empresas} DATA INICIO {data_compra}'''
-    if ondens_position == 2:
-        op_list=[op1, op2]
+
+    if ondens_position >=2:
+        if ondens_position==2:
+
+            if 'op1' in locals():                
+                del op1
+            if 'op2' in locals():                
+                del op2
+            if 'op3' in locals():               
+                del op3
+            if 'op4' in locals():                
+                del op4
+
+            for index, row_1 in dados_PEDIDO.iterrows():    
+                if primeira_passagem:
+                    op1 = {
+                        'op_type': row_1['op_type'],
+                        'strike': row_1['strike'],
+                        'tr_type': row_1['tr_type'],
+                        'op_pr': row_1['op_pr']
+                    }
+                    primeira_passagem = False
+                else:
+                    op2 = {
+                        'op_type': row_1['op_type'],
+                        'strike': row_1['strike'],
+                        'tr_type': row_1['tr_type'],
+                        'op_pr': row_1['op_pr']
+                    }
+
+        elif ondens_position ==4:
+            if 'op1' in locals():                
+                del op1
+            if 'op2' in locals():                
+                del op2
+            if 'op3' in locals():                
+                del op3
+            if 'op4' in locals():                
+                del op4
+            for index, row_1 in dados_PEDIDO.iterrows():    
+                if primeira_passagem:
+                    op1 = {
+                        'op_type': row_1['op_type'],
+                        'strike': row_1['strike'],
+                        'tr_type': row_1['tr_type'],
+                        'op_pr': row_1['op_pr']
+                    }
+                    primeira_passagem = False
+                elif 'op2' not in locals():
+                    op2 = {
+                        'op_type': row_1['op_type'],
+                        'strike': row_1['strike'],
+                        'tr_type': row_1['tr_type'],
+                        'op_pr': row_1['op_pr']
+                    }
+                elif 'op3' not in locals():
+                    op3 = {
+                        'op_type': row_1['op_type'],
+                        'strike': row_1['strike'],
+                        'tr_type': row_1['tr_type'],
+                        'op_pr': row_1['op_pr']
+                    }
+                else:
+                    op4 = {
+                        'op_type': row_1['op_type'],
+                        'strike': row_1['strike'],
+                        'tr_type': row_1['tr_type'],
+                        'op_pr': row_1['op_pr']
+                    }                
+        
+        if ondens_position == 2:
+            op_list=[op1, op2]
+        else:
+            op_list=[op1, op2, op3, op4]
+        op.multi_plotter(spot=ultima_cotacao,spot_range=10, op_list=op_list, title_1=title_1,spotInicial = preco_mont)
     else:
-        op_list=[op1, op2, op3, op4]
-    op.multi_plotter(spot=preco_mont,spot_range=10, op_list=op_list, title_1=title_1,spotInicial = preco_mont)
-    # Limpar os dicionários
-    # del op1
-    # del op2
-    # del op3
-    # del op4
-    # if 'op1' in locals():
-    #     # Destruir op1
-    #     del op1
-    # if 'op2' in locals():
-    #     # Destruir op1
-    #     del op2
-    # if 'op3' in locals():
-    #     # Destruir op1
-    #     del op3
-    # if 'op4' in locals():
-    #     # Destruir op1
-    #     del op4
+        for index, row_1 in dados_PEDIDO.iterrows():               
+            op.single_plotter(spot=ultima_cotacao, 
+                              strike=row_1['strike'], 
+                              op_type=row_1['op_type'], 
+                              tr_type=row_1['tr_type'],
+                              op_pr=row_1['op_pr'],
+                              spotInicial = preco_mont,
+                              title_1=title_1)
 
 
 
