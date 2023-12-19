@@ -3,6 +3,7 @@
 import opstrat as op
 import funcaoConexaoBancoSQl as ConectSQL
 import pandas as pd
+import yfinance as yf
 
 def opcoes_estrategia():
     
@@ -32,15 +33,24 @@ def opcoes_estrategia():
 
 df_opcoes = ""
 df_opcoes = opcoes_estrategia()
-df_agrupado = df_opcoes.groupby(['papel', 'pedido','price_montagem']).size().reset_index(name='count')
+df_agrupado = df_opcoes.groupby(['papel', 'pedido','price_montagem', 'data_compra']).size().reset_index(name='count')
 
 for index, row in df_agrupado.iterrows():
 
     primeira_passagem = True
-    empresas = row['papel']
+    empresas = row['papel']    
+    data_compra =row['data_compra']  
     ondens_position= row['count']
     preco_mont= row['price_montagem']
     dados_empresa = df_opcoes[df_opcoes['papel'] == empresas]
+
+    ticker_symbol = empresas+".SA" 
+    # Obtenha os dados do ticker
+    ticker = yf.Ticker(ticker_symbol)
+    # Obtenha o histórico de preços
+    historico = ticker.history(period="1d")  # Obtém o histórico para o último dia
+    # Obtenha o valor da última cotação (último preço)
+    ultima_cotacao = historico['Close'].iloc[-1]
 
 
     
@@ -77,12 +87,17 @@ for index, row in df_agrupado.iterrows():
             }
     
 
-    title_1 = f'''{empresas} IRON 18/12/2023'''
-    if ondens_position == 2:
+    title_1 = f'''{empresas} DATA INICIO {data_compra}'''
+
+    if ondens_position == 1:
+        op_list=[op1]
+    elif ondens_position == 2:
         op_list=[op1, op2]
+    elif ondens_position == 3:
+        op_list=[op1, op2, op3]
     else:
         op_list=[op1, op2, op3, op4]
-    op.multi_plotter(spot=preco_mont,spot_range=10, op_list=op_list, title_1=title_1,spotInicial = preco_mont)
+    op.multi_plotter(spot=ultima_cotacao,spot_range=10, op_list=op_list, title_1=title_1,spotInicial = preco_mont)
     # Limpar os dicionários
     if 'op1' in locals():
         # Destruir op1
