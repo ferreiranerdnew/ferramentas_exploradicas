@@ -13,7 +13,8 @@ status char(1),
 data_necimento varchar(8),
 data_compra varchar(8),
 price_montagem float,
-op_pr_new float
+op_pr_new float,
+strike_new float
 )
 
 INSERT INTO OPCOES_TRAVAS (pedido,papel,op_type,strike,tr_type,op_pr,status,data_necimento,data_compra,price_montagem) VALUES (
