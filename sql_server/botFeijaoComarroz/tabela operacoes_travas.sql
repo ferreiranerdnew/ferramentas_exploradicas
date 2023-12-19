@@ -31,11 +31,7 @@ INSERT INTO OPCOES_TRAVAS (pedido,papel,op_type,strike,tr_type,op_pr,status,data
                               2,'ABEV3','c',14.85,'s',0.19,'A','20240119','20231218',14.51)
 
 INSERT INTO OPCOES_TRAVAS (pedido,papel,op_type,strike,tr_type,op_pr,status,data_necimento,data_compra,price_montagem) VALUES (
-                            2,'ABEV3','c',14.60,'b',0.31,'A','20240119','20231218',14.51)
-              
-                            
-                            
-                            
+                            2,'ABEV3','c',14.60,'b',0.31,'A','20240119','20231218',14.51)                             
 INSERT INTO OPCOES_TRAVAS (pedido,papel,op_type,strike,tr_type,op_pr,status,data_necimento,data_compra,price_montagem) VALUES (
                             3,'BMGB4','p',2.70,'b',0.06,'A','20240119','20231218',3.33)     
                             
@@ -43,7 +39,7 @@ INSERT INTO OPCOES_TRAVAS (pedido,papel,op_type,strike,tr_type,op_pr,status,data
                             4,'MGLU3','p',2.25,'b',0.28,'A','20240119','20231218',2.23)    
                             
 INSERT INTO OPCOES_TRAVAS (pedido,papel,op_type,strike,tr_type,op_pr,status,data_necimento,data_compra,price_montagem) VALUES (
-                            4,'PETR4','c',2.25,'b',0.27,'A','20240119','20231218',2.23)
+                            4,'MGLU3','c',2.25,'b',0.27,'A','20240119','20231218',2.23)
                             
 INSERT INTO OPCOES_TRAVAS (pedido,papel,op_type,strike,tr_type,op_pr,status,data_necimento,data_compra,price_montagem) VALUES (
                            5,'SUZB3','c',53.01,'s',1.26,'A','20240119','20231218',52.52)
@@ -80,3 +76,5 @@ group by pedido, papel
 
 
 SELECT * FROM OPCOES_TRAVAS
+
+DELETE FROM OPCOES_TRAVAS
