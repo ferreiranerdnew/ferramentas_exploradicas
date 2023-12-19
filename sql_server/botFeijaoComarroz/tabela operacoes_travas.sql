@@ -83,6 +83,20 @@ INSERT INTO OPCOES_TRAVAS (pedido,papel,op_type,strike,tr_type,op_pr,status,data
                             
                             
                             
+INSERT INTO OPCOES_TRAVAS (pedido,papel,op_type,strike,tr_type,op_pr,status,data_necimento,data_compra,price_montagem) VALUES (
+                           10,'BBSE3','c',33.14,'s',0.74,'A','20240119','20231219',33.17)
+
+INSERT INTO OPCOES_TRAVAS (pedido,papel,op_type,strike,tr_type,op_pr,status,data_necimento,data_compra,price_montagem) VALUES (
+                            10,'BBSE3','c',33.64,'b',0.51,'A','20240119','20231219',33.17)
+                            
+INSERT INTO OPCOES_TRAVAS (pedido,papel,op_type,strike,tr_type,op_pr,status,data_necimento,data_compra,price_montagem) VALUES (
+                           10,'BBSE3','p',31.64,'s',0.14,'A','20240119','20231219',33.17)
+
+INSERT INTO OPCOES_TRAVAS (pedido,papel,op_type,strike,tr_type,op_pr,status,data_necimento,data_compra,price_montagem) VALUES (
+                            10,'BBSE3','p',31.39,'b',0.12,'A','20240119','20231219',33.17)  
+                            
+                            
+                            
 SELECT pedido, papel FROM OPCOES_TRAVAS
 where status = 'A'
 group by pedido, papel
