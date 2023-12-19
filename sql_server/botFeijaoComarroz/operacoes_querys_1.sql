@@ -29,5 +29,5 @@ SELECT pedido, papel, sum(op_pr_new) as op_pr_new  FROM OPCOES_TRAVAS
 where status = 'A'
 --AND papel ='VALE3'
 --and pedido =6
-group by pedido, papel,op_type
+group by pedido, papel
 
