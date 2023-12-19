@@ -33,7 +33,9 @@ def opcoes_estrategia():
 
 df_opcoes = ""
 df_opcoes = opcoes_estrategia()
-df_agrupado = df_opcoes.groupby(['papel', 'pedido','price_montagem', 'data_compra']).size().reset_index(name='count')
+df_agrupado = df_opcoes.groupby([ 'pedido','papel','price_montagem', 'data_compra']).size().reset_index(name='count')
+df_agrupado = df_agrupado.sort_values(by=[ 'pedido','papel', 'price_montagem', 'data_compra'])
+
 
 for index, row in df_agrupado.iterrows():
 
@@ -55,68 +57,83 @@ for index, row in df_agrupado.iterrows():
     ultima_cotacao = historico['Close'].iloc[-1]
 
 
-    for index, row_1 in dados_PEDIDO.iterrows():    
-        if primeira_passagem:
-            op1 = {
-                'op_type': row_1['op_type'],
-                'strike': row_1['strike'],
-                'tr_type': row_1['tr_type'],
-                'op_pr': row_1['op_pr']
-            }
-            primeira_passagem = False
-        elif 'op2' not in locals():
-            op2 = {
-                'op_type': row_1['op_type'],
-                'strike': row_1['strike'],
-                'tr_type': row_1['tr_type'],
-                'op_pr': row_1['op_pr']
-            }
-        elif 'op3' not in locals():
-            op3 = {
-                'op_type': row_1['op_type'],
-                'strike': row_1['strike'],
-                'tr_type': row_1['tr_type'],
-                'op_pr': row_1['op_pr']
-            }
-        else:
-            op4 = {
-                'op_type': row_1['op_type'],
-                'strike': row_1['strike'],
-                'tr_type': row_1['tr_type'],
-                'op_pr': row_1['op_pr']
-            }
-    # elif ondens_position ==4:
-    #     for index, row_1 in dados_PEDIDO.iterrows():    
-    #         if primeira_passagem:
-    #             op1 = {
-    #                 'op_type': row_1['op_type'],
-    #                 'strike': row_1['strike'],
-    #                 'tr_type': row_1['tr_type'],
-    #                 'op_pr': row_1['op_pr']
-    #             }
-    #             primeira_passagem = False
-    #         elif 'op2' not in locals():
-    #             op2 = {
-    #                 'op_type': row_1['op_type'],
-    #                 'strike': row_1['strike'],
-    #                 'tr_type': row_1['tr_type'],
-    #                 'op_pr': row_1['op_pr']
-    #             }
-    #         elif 'op3' not in locals():
-    #             op3 = {
-    #                 'op_type': row_1['op_type'],
-    #                 'strike': row_1['strike'],
-    #                 'tr_type': row_1['tr_type'],
-    #                 'op_pr': row_1['op_pr']
-    #             }
-    #         else:
-    #             op4 = {
-    #                 'op_type': row_1['op_type'],
-    #                 'strike': row_1['strike'],
-    #                 'tr_type': row_1['tr_type'],
-    #                 'op_pr': row_1['op_pr']
-    #             }
-        
+    if ondens_position==2:
+
+        if 'op1' in locals():
+            # Destruir op1
+            del op1
+        if 'op2' in locals():
+            # Destruir op1
+            del op2
+        if 'op3' in locals():
+            # Destruir op1
+            del op3
+        if 'op4' in locals():
+            # Destruir op1
+            del op4
+
+
+        for index, row_1 in dados_PEDIDO.iterrows():    
+            if primeira_passagem:
+                op1 = {
+                    'op_type': row_1['op_type'],
+                    'strike': row_1['strike'],
+                    'tr_type': row_1['tr_type'],
+                    'op_pr': row_1['op_pr']
+                }
+                primeira_passagem = False
+            else:
+                op2 = {
+                    'op_type': row_1['op_type'],
+                    'strike': row_1['strike'],
+                    'tr_type': row_1['tr_type'],
+                    'op_pr': row_1['op_pr']
+                }
+
+    elif ondens_position ==4:
+        if 'op1' in locals():
+            # Destruir op1
+            del op1
+        if 'op2' in locals():
+            # Destruir op1
+            del op2
+        if 'op3' in locals():
+            # Destruir op1
+            del op3
+        if 'op4' in locals():
+            # Destruir op1
+            del op4
+        for index, row_1 in dados_PEDIDO.iterrows():    
+            if primeira_passagem:
+                op1 = {
+                    'op_type': row_1['op_type'],
+                    'strike': row_1['strike'],
+                    'tr_type': row_1['tr_type'],
+                    'op_pr': row_1['op_pr']
+                }
+                primeira_passagem = False
+            elif 'op2' not in locals():
+                op2 = {
+                    'op_type': row_1['op_type'],
+                    'strike': row_1['strike'],
+                    'tr_type': row_1['tr_type'],
+                    'op_pr': row_1['op_pr']
+                }
+            elif 'op3' not in locals():
+                op3 = {
+                    'op_type': row_1['op_type'],
+                    'strike': row_1['strike'],
+                    'tr_type': row_1['tr_type'],
+                    'op_pr': row_1['op_pr']
+                }
+            else:
+                op4 = {
+                    'op_type': row_1['op_type'],
+                    'strike': row_1['strike'],
+                    'tr_type': row_1['tr_type'],
+                    'op_pr': row_1['op_pr']
+                }
+            
 
     title_1 = f'''{empresas} DATA INICIO {data_compra}'''
     if ondens_position == 2:
@@ -129,18 +146,18 @@ for index, row in df_agrupado.iterrows():
     # del op2
     # del op3
     # del op4
-    if 'op1' in locals():
-        # Destruir op1
-        del op1
-    if 'op2' in locals():
-        # Destruir op1
-        del op2
-    if 'op3' in locals():
-        # Destruir op1
-        del op3
-    if 'op4' in locals():
-        # Destruir op1
-        del op4
+    # if 'op1' in locals():
+    #     # Destruir op1
+    #     del op1
+    # if 'op2' in locals():
+    #     # Destruir op1
+    #     del op2
+    # if 'op3' in locals():
+    #     # Destruir op1
+    #     del op3
+    # if 'op4' in locals():
+    #     # Destruir op1
+    #     del op4
 
 
 
