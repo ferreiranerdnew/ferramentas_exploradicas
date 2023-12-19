@@ -67,6 +67,19 @@ INSERT INTO OPCOES_TRAVAS (pedido,papel,op_type,strike,tr_type,op_pr,status,data
 INSERT INTO OPCOES_TRAVAS (pedido,papel,op_type,strike,tr_type,op_pr,status,data_necimento,data_compra,price_montagem) VALUES (
                             7,'VALE3','p',70.32,'b',0.44,'A','20240119','20231218',74.11)  
                            
+                           
+                           
+INSERT INTO OPCOES_TRAVAS (pedido,papel,op_type,strike,tr_type,op_pr,status,data_necimento,data_compra,price_montagem) VALUES (
+                           8,'BRKM5','c',19.25,'s',0.65,'A','20240119','20231219',18.63)
+
+INSERT INTO OPCOES_TRAVAS (pedido,papel,op_type,strike,tr_type,op_pr,status,data_necimento,data_compra,price_montagem) VALUES (
+                            8,'BRKM5','c',20.25,'b',0.38,'A','20240119','20231219',18.63)
+                            
+INSERT INTO OPCOES_TRAVAS (pedido,papel,op_type,strike,tr_type,op_pr,status,data_necimento,data_compra,price_montagem) VALUES (
+                            8,'BRKM5','p',17.75,'s',0.46,'A','20240119','20231219',18.63)
+
+INSERT INTO OPCOES_TRAVAS (pedido,papel,op_type,strike,tr_type,op_pr,status,data_necimento,data_compra,price_montagem) VALUES (
+                            8,'BRKM5','p',16.75,'b',0.28,'A','20240119','20231219',18.63)  
                             
                             
                             
