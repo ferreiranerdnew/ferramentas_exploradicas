@@ -27,12 +27,12 @@ import numpy as np
     
 #     return callsbidInter,callskInter
 
-ticker = "MGLU3.SA"
+ticker = "MSFT"
 dataVencimento = "2024-01-19"
 # ativoTiker = yf.Ticker("mglu3.sa")
 #opt = ativoTiker.option_chain('2021-11-19') #data de vencimento da opção
 ativoTiker = yf.Ticker(ticker)
-# opt = ativoTiker.option_chain(dataVencimento) #data de vencimento da opção
+opt = ativoTiker.option_chain(dataVencimento) #data de vencimento da opção
 ##Converter coluna em indice 
 # opt.puts.set_index('contractSymbol',inplace=True) #trasformando a primeira coluna coluna em indice
 # df1 = opt.puts
